@@ -38,6 +38,7 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
 2. Set up initial table.
    * ["ON"] cells are marked on the leftmost column (col) when there is only
      one non-zero cell there.
+
      |ON | x  | y  | z  | s  | t  | u  | p  | Ans |
      |---|---:|---:|---:|---:|---:|---:|---:|----:|
      |s  | 7  | 0  | 1  | 1  | 0  | 0  | 0  |   6 |
@@ -47,6 +48,7 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
 
 3. Select the pivot column.
    * Pick the column with greatest minus on p.
+
      |ON | x  | y  | **z**| s  | t  | u  | p  | Ans |
      |---|---:|---:|-----:|---:|---:|---:|---:|----:|
      |s  |  7 |  0 | **1**| 1  | 0  | 0  | 0  |   6 |
@@ -66,6 +68,7 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
    * _HINT:_ use row operations (ops): Multiply respective rows and operate them.
 
      Before:
+
      |ON | x  | y  |   z  | s  | t  | u  | p  | Ans |
      |---|---:|---:|-----:|---:|---:|---:|---:|----:|
      |s  |  7 |  0 | **1**| 1  | 0  | 0  | 0  |   6 |
@@ -93,6 +96,7 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
    * Replace the ["ON"] cell with the pivot variable.
 
      After: 
+
      |  ON |   x |  y |  z  |  s |  t |  u |  p | Ans |
      |-----|----:|---:|----:|---:|---:|---:|---:|----:|
      |**z**|   7 |  0 |**1**|  1 |  0 |  0 |  0 |   6 |
@@ -104,6 +108,7 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
 
 3. Select the pivot column.
    * Pick the column with greatest minus on p.
+
      |  ON |   x | **y**|  z  |  s |  t |  u |  p | Ans |
      |-----|----:|-----:|----:|---:|---:|---:|---:|----:|
      |  z  |   7 | **0**|  1  |  1 |  0 |  0 |  0 |   6 |
@@ -122,6 +127,7 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
    * _HINT:_ use row operations (ops): Multiply respective rows and operate them.
 
      Before:
+
      |  ON |   x |   y  |  z  |  s |  t |  u |  p | Ans |
      |-----|----:|-----:|----:|---:|---:|---:|---:|----:|
      |  z  |   7 |   0  |  1  |  1 |  0 |  0 |  0 |   6 |
@@ -148,7 +154,8 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
      ```
    * Replace the ["ON"] cell with the pivot variable.
 
-     After: 
+     After:
+
      |  ON |   x |  y |  z  |  s |  t |  u |  p | Ans |
      |-----|----:|---:|----:|---:|---:|---:|---:|----:|
      |  z  |   7 |  0 |  1  |  1 |  0 |  0 |  0 |   6 |
@@ -160,12 +167,14 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
 
 3. Select the pivot column.
    * Pick the column with greatest minus on p.
+
      |  ON |   x |  y |  z  |  s |  t |  u |  p | Ans |
      |-----|----:|---:|----:|---:|---:|---:|---:|----:|
      |  z  |   7 |  0 |  1  |  1 |  0 |  0 |  0 |   6 |
      |  t  |  59 |  0 |  0  |  8 |  3 | -2 |  0 |  48 |
      |  y  | -28 |  3 |  0  | -4 |  0 |  1 |  0 |   6 |
      |  p  |   4 |  0 |  0  |  1 |  0 |  2 |  3 |  66 |
+
    * If no more minus, jump to step 7 ("Done. You have reached the optimum solution").
 
 7. Done. You have reached the optimum solution.
@@ -207,6 +216,7 @@ Let's run the phases:
    - `-a - 2b + p = 0`
 
 2. Put them in a table:
+
    | ON |  x |  y | s | t | p |  Ans |
    |----|---:|---:|--:|--:|--:|-----:|
    | s  |  1 |  1 | 1 | 0 | 0 |  200 |
@@ -235,6 +245,7 @@ Let's run the phases:
    ```
 
    And the table becomes:
+
    | ON |  x |  y |  s |  t |  p |  Ans |
    |----|---:|---:|---:|---:|---:|-----:|
    | s  | 16 |  0 | 20 | -2 |  0 | 2240 |
@@ -262,7 +273,8 @@ Let's run the phases:
          = {  0, 0, 60,  2, 80, 20800}
    ```
 
-   And here's the optimum table:
+   And here's the optimum table (no more minuses on `p`):
+
    | ON |  x |  y |   s |  t |  p |   Ans |
    |----|---:|---:|----:|---:|---:|------:|
    | x  | 16 |  0 |  20 | -2 |  0 |  2240 |
