@@ -194,10 +194,14 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
 Translated from ["Soal No. 1" on this site](https://matematikastudycenter.com/kelas-12/72-12-sma-program-linier).
 
 > A parking lot has an area of 1.760 m^2. An average area for a small car is
-> 4 m^2 and for a big car is 20 m^2. The parking lot can only fit 200 cars.
-> The parking bill is $1.00 for a small car and $2.00 for a big car. If within
-> an hour, the parking lot is full and there are no incoming nor outgoing
-> vehicles, then what is the maximum revenue from the parking lot that hour?
+> 4 m^2 and for a big car is 20 m^2. The parking lot can only fit 200 cars
+> The parking bill per hour is $1.00 for a small car and $2.00 for a big car.
+> If within an hour, the parking lot is full and there are no incoming nor
+> outgoing vehicles, then what is the maximum revenue from the parking lot
+> that hour?
+>
+> PS: In the original question, they use Rp1.000,00 and Rp2.000,00
+> respectively. I converted to Dollars to make it look better.
 
 Let's say:
 - `a`: small car
@@ -284,4 +288,5 @@ Let's run the phases:
 9. Finally, find `p` for our revenue:
    `p = 20800/80 = 260`
 
-So, the maximum revenue from the parking lot is $260.
+So, the maximum revenue from the parking lot is $260. (Rp260.000,00 in
+the original question.)
