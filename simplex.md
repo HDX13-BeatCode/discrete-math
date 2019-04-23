@@ -18,7 +18,7 @@ Here are the steps:
 6. Jump to step 3.
 7. Done. You have reached the optimum solution.
 
-## Example 1
+## Example 1 (Maximization)
 
 Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/frames4_3.html).
 
@@ -187,9 +187,9 @@ Here is the [question source](https://www.zweigmedia.com/RealWorld/tutorialsf4/f
    * `u = 0` (not ON)
    * `p = 66/3 = 22`
 
-   > So, `p` can me maxed with `22 = 0 + 2*2 + 3*6`.
+So, `p` can me maxed with `22 = 0 + 2*2 + 3*6`.
 
-## Example 2 (Case Study)
+## Example 2 (Maximization Case Study)
 
 Translated from ["Soal No. 1" on this site](https://matematikastudycenter.com/kelas-12/72-12-sma-program-linier).
 
@@ -211,6 +211,7 @@ Let's say:
 And we have to maximize `p = 1a + 2b` with the following constraints:
 - `a + b = 200` (parking lot capacity, and considering the parking lot is full)
 - `4a + 20b <= 1760` (parking lot area, may be smaller than the available area)
+- `a, b >= 0` (of course, we cannot have negative number of cars, can we?)
 
 Let's run the phases:
 
@@ -221,19 +222,19 @@ Let's run the phases:
 
 2. Put them in a table:
 
-   | ON |  x |  y | s | t | p |  Ans |
+   | ON |  a |  b | s | t | p |  Ans |
    |----|---:|---:|--:|--:|--:|-----:|
    | s  |  1 |  1 | 1 | 0 | 0 |  200 |
    | t  |  4 | 20 | 0 | 1 | 0 | 1760 |
    | p  | -1 | -2 | 0 | 0 | 1 |    0 |
 
-3. Set the pivot column to `y` because it has the greatest minus on `p`, `-2`.
+3. Set the pivot column to `b` because it has the greatest minus on `p`, `-2`.
 
 4. Set the pivot cell. Let's try one at the time.
    - `s = 200/1 = 200`
    - `t = 1760/20 = 88` (use this)
 
-5. Turn `(y,s)` and `(y,p)` into `0` using row ops.
+5. Turn `(b,s)` and `(b,p)` into `0` using row ops.
    ```
    row_s = 20*row_s - row_t
          = {20, 20, 20,  0, 0, 4000}
@@ -250,21 +251,21 @@ Let's run the phases:
 
    And the table becomes:
 
-   | ON |  x |  y |  s |  t |  p |  Ans |
+   | ON |  a |  b |  s |  t |  p |  Ans |
    |----|---:|---:|---:|---:|---:|-----:|
    | s  | 16 |  0 | 20 | -2 |  0 | 2240 |
-   | y  |  4 | 20 |  0 |  1 |  0 | 1760 |
+   | b  |  4 | 20 |  0 |  1 |  0 | 1760 |
    | p  | -6 |  0 |  0 |  1 | 10 | 1760 |
 
-6. We still have one more minus (`-6` on col `x`), so that's our pivot column.
+6. We still have one more minus (`-6` on col `a`), so that's our pivot column.
 
 7. Set the pivot cell like before. We get:
    - `s = 2240/16 = 140` (use this)
-   - `y = 1760/4 = 440`
+   - `b = 1760/4 = 440`
 
-8. Turn `(x,y)` and `(x,p)` into `0` using row ops.
+8. Turn `(a,b)` and `(a,p)` into `0` using row ops.
    ```
-   row_y = 4*row_y - row_s
+   row_y = 4*row_b - row_s
          = {16, 80,   0,  4, 0, 7040}
          - {16,  0,  20, -2, 0, 2240}
          ----------------------------
@@ -279,10 +280,10 @@ Let's run the phases:
 
    And here's the optimum table (no more minuses on `p`):
 
-   | ON |  x |  y |   s |  t |  p |   Ans |
+   | ON |  a |  b |   s |  t |  p |   Ans |
    |----|---:|---:|----:|---:|---:|------:|
-   | x  | 16 |  0 |  20 | -2 |  0 |  2240 |
-   | y  |  0 | 80 | -20 |  6 |  0 |  4800 |
+   | a  | 16 |  0 |  20 | -2 |  0 |  2240 |
+   | b  |  0 | 80 | -20 |  6 |  0 |  4800 |
    | p  |  0 |  0 |  60 |  2 | 80 | 20800 |
 
 9. Finally, find `p` for our revenue:
@@ -290,3 +291,132 @@ Let's run the phases:
 
 So, the maximum revenue from the parking lot is $260. (Rp260.000,00 in
 the original question.)
+
+## Example 3 (Minimization)
+
+This problem came from [this YouTube video](https://www.youtube.com/watch?v=8_D3gkrgeK8).
+
+> Minimize `C = 3a + 9b` subject to:
+> * `2a + b >= 8`
+> * `b + 2b >= 8`
+> * `a, b >= 0`
+>
+> PS: In the video, `x1` and `x2` are used instead of `a` and `b`.
+
+With minimization, it's a bit different. But we can work around this by turning
+our minimization LP into maximization LP. Here are the steps:
+
+1. We need to make a matrix of our equations. Here, I use a table representation
+   for easier visualization.
+
+   |      | a | b | Result |
+   |------|--:|--:|-------:|
+   | EQ 1 | 2 | 1 |      8 |
+   | EQ 2 | 1 | 2 |      8 |
+   | C    | 3 | 9 |      1 |
+   
+2. Then we transpose the matrix (table in this case) into something like this.
+   Also, we change `C` into `P`.
+   
+   |      | c | d | Result |
+   |------|--:|--:|-------:|
+   | EQ 1 | 2 | 1 |      3 |
+   | EQ 2 | 1 | 2 |      9 |
+   | P    | 8 | 8 |      1 |
+   
+   > PS: `c` and `d` are represented in the video as `y1` and `y2` respectively.
+   
+   Therefore we get this maximization case:
+   
+   > Maximize `P = 8c + 8d` subject to:
+   > * `2c + d <= 3`
+   > * `c + 2d <= 9`
+   > * `c, d >= 0`
+   
+   The rest are just like usual.
+
+3. Turn our LP into EQs. 
+   (use `a` and `b` for slacks, because we are looking for them.)
+   - `2c + d + a = 3`
+   - `c + 2d + b = 9`
+   - `-8c - 8d + P = 0`
+
+4. Make a table.
+
+   | ON |  c |  d | a | b | P | Ans |
+   |----|---:|---:|--:|--:|--:|----:|
+   | a  |  2 |  1 | 1 | 0 | 0 |   3 |
+   | b  |  1 |  2 | 0 | 1 | 0 |   9 |
+   | P  | -8 | -8 | 0 | 0 | 1 |   0 |
+
+5. Both `c` and `d` have the same level of minus, so feel free to pick one.
+   I'll go with `c` as the pivot column first.
+
+6. Determining the pivot cell.
+   - `a = 3/2 = 1.5` (use this)
+   - `b = 9/1 = 9`
+
+7. Turn `(c,b)` and `(c,P)` into 0 with row ops.
+
+   ```
+   row_b = 2*row_b - row_a
+         = {2, 4,  0, 2, 0, 18}
+         - {2, 1,  1, 0, 0,  3}
+         ----------------------
+         = {0, 3, -1, 2, 0, 15}
+
+   row_P = row_P + 4*row_a
+         = {-8, -8, 0, 0, 1,  0}
+         + { 8,  4, 4, 0, 0, 12}
+         -----------------------
+         = { 0, -4, 4, 0, 1, 12}
+   ```
+   
+   Our current table:
+
+   | ON | c |  d |  a | b | P | Ans |
+   |----|--:|---:|---:|--:|--:|----:|
+   | c  | 2 |  1 |  1 | 0 | 0 |   3 |
+   | b  | 0 |  3 | -1 | 2 | 0 |  15 |
+   | P  | 0 | -4 |  4 | 0 | 1 |  12 |
+
+8. Set `d` as our pivot column (I guess you already know why.)
+
+9. Set the pivot cell.
+   - `c = 3/1 = 3` (use this, again)
+   - `b = 15/3 = 5`
+
+10. Do the row ops again.
+
+    ```
+    row_b = row_b - 3*row_c
+          = { 0, 3, -1, 2, 0, 15}
+          - { 6, 3,  3, 0, 0,  9}
+          -----------------------
+          = {-6, 0, -4, 2, 0,  6}
+
+    row_P = row_P + 4*row_c
+          = {0, -4, 4, 0, 1, 12}
+          + {8, 4, 4, 0, 0, 12}
+          -----------------------
+          = {8, 0, 8, 0, 1, 24}
+    ```
+
+    Thus making our final optimum table:
+
+    | ON |  c | d |  a | b | P | Ans |
+    |----|---:|--:|---:|--:|--:|----:|
+    | d  |  2 | 1 |  1 | 0 | 0 |   3 |
+    | b  | -6 | 0 | -4 | 2 | 0 |   6 |
+    | P  |  8 | 0 |  8 | 0 | 1 |  24 |
+
+11. Get our final values. On minimization case, we look things the other way.
+    Instead of looking across, we're looking all the way down.
+    - `c = 8`
+    - `d = 0`
+    - `a = 8`
+    - `b = 0`
+    - `P = 24` (Remember, on step 2, we changed `C` into `P`, so...)
+    - `C = 24`
+
+So, `C` will have a minimum value of `24` when `a` is `8` and `b` is `0`. The end.
